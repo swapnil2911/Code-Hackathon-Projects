@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <style>
+    
+    .table1 { 
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width:400px;
+    height:500px;
+}    
+
+.disc{
+    color:crimson;
+}
+.spam{
+    color:cyan;
+}
+.ann{
+    color:greenyellow;
+}
+    </style>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+<div class="table1" style="overflow-y:auto;">
+    <table style="width:100%" border="black">
+        <tr>
+          <th>Messages</th>
+          <th>Label</th>
+        </tr>
+        {% for i in range(n) %}
+        {% if labels[i]==1 %}
+            <tr>
+                <td class="ann">{{ df["Content"][i] }}</td>
+                <td class="ann">Announcement</td>
+            </tr>
+        {% endif %}
+        {% if labels[i]==2 %}
+            <tr>
+                <td class="spam">{{ df["Content"][i] }}</td>
+                <td class="spam">Spam</td>
+            </tr>
+        {% endif %}
+        {% if labels[i]==3 %}
+            <tr>
+                <td class="disc">{{ df["Content"][i] }}</td>
+                <td class="disc">Discussions</td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+</div>
+      </body>
+      </html>
